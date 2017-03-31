@@ -48,7 +48,14 @@ class KnightPathFinder
 
 
   def build_move_tree
-    return nil #TODO
+    queue = [@start_node]
+    queue.each do |node|
+      new_move_positions(node.value).each do |pos|
+        new_child = PolyTreeNode.new(pos)
+        @start_node.add_child(new_child)
+        queue << new_child
+      end
+    end
   end
 
   def find_path(end_pos)
